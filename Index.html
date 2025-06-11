@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ravi's Portfolio</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Bebas+Neue&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-bg: #0a0f3c;
+      --color-text: #d1d5db;
+      --color-text-dark: #e5e7eb;
+      --color-primary: #00FF9C;
+      --radius: 0.75rem;
+      --shadow-light: rgba(0, 0, 0, 0.1);
+      --font-heading: 'Poppins', sans-serif;
+      --font-body: 'Poppins', sans-serif;
+      --font-logo: 'Bebas Neue', sans-serif;
+    }
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: var(--font-body);
+      background-color: var(--color-bg);
+      color: var(--color-text);
+      font-size: 15px;
+      user-select: none;
+    }
+    a {
+      color: var(--color-primary);
+      text-decoration: none;
+    }
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 0 1rem;
+    }
+    header {
+      background: transparent;
+      padding: 1rem 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo h2 {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-family: var(--font-logo);
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: #CF0F47;
+      animation: logoFade 1.5s ease-in-out 1;
+      text-shadow: 0 0 5px #CF0F47, 0 0 10px #CF0F47;
+    }
+    @keyframes logoFade {
+      0% { opacity: 0; transform: translateY(-20px); text-shadow: 0 0 5px #CF0F47; }
+      100% { opacity: 1; transform: translateY(0); text-shadow: 0 0 5px #CF0F47, 0 0 10px #CF0F47; }
+    }
+    nav {
+      display: flex;
+      gap: 2rem;
+      font-weight: 600;
+    }
+    nav a {
+      color: var(--color-text-dark);
+      position: relative;
+      text-shadow: 0 0 5px #00FFDE, 0 0 10px #00FFDE;
+    }
+    nav a:hover::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: var(--color-primary);
+    }
+    .menu-icon {
+      display: none;
+      font-size: 2rem;
+      color: var(--color-primary);
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    .menu-icon.active {
+      transform: rotate(90deg);
+    }
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(26, 26, 26, 0.8);
+      backdrop-filter: blur(5px);
+      padding: 2rem;
+      z-index: 1000;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      transform: translateX(100%);
+    }
+    .mobile-nav.active {
+      display: flex;
+      animation: slideIn 0.3s ease-in-out forwards;
+    }
+    @keyframes slideIn {
+      from { transform: translateX(100%); }
+      to { transform: translateX(0); }
+    }
+    .mobile-nav a {
+      color: var(--color-text-dark);
+      font-size: 1.5rem;
+      margin: 1rem 0;
+      font-weight: 600;
+      text-align: center;
+      text-shadow: 0 0 5px var(--color-primary), 0 0 10px var(--color-primary);
+      user-select: none;
+    }
+    .mobile-nav a:hover {
+      color: var(--color-primary);
+    }
+    .close-icon {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      font-size: 2rem;
+      color: var(--color-primary);
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    .close-icon:hover {
+      transform: rotate(90deg);
+    }
+    .mobile-social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .mobile-social-icons a {
+      display: inline-block;
+      padding: 0.3rem;
+      border-radius: 50%;
+      color: var(--color-primary);
+      background-color: transparent;
+      text-decoration: none;
+    }
+    .mobile-social-icons a:hover {
+      transform: scale(1);
+      background-color: #FF0B55;
+      box-shadow: 0 0 20px rgba(255, 11, 85, 0.6);
+    }
+    .hero {
+      text-align: center;
+      padding: 4rem 0;
+      font-size: 1rem;
+    }
+    .hero h3 {
+      margin: 0;
+      font-family: var(--font-heading);
+      font-size: 1rem;
+      color: var(--color-primary);
+    }
+    .hero h2 {
+      text-shadow: 0 0 5px var(--color-primary), 0 0 10px var(--color-primary);
+    }
+    .hero p {
+      color: var(--color-text-dark);
+      font-size: 10px;
+      padding: 3rem;
+      font-family: var(--font-body);
+    }
+    .button-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    .btn-primary, .button {
+      background-color: var(--color-primary);
+      color: #000;
+      padding: 0.8rem 1.5rem;
+      border: none;
+      border-radius: var(--radius);
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 0 0 transparent;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+    }
+    .btn-primary {
+      box-shadow: 0 0 5px var(--color-primary), 0 0 10px var(--color-primary);
+    }
+    .button {
+      background-color: #FF0B55;
+      color: #fff;
+      box-shadow: 0 0 5px #FF0B55, 0 0 15px #FF0B55;
+    }
+    .btn-primary:hover, .button:hover {
+      box-shadow: 0 0 20px 4px rgba(56, 189, 248, 0.6);
+      transform: translateY(-3px);
+    }
+    @media (max-width: 768px) {
+      .button-container {
+        flex-direction: row;
+        align-items: center;
+      }
+    }
+    #contact {
+      padding: 4rem 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      width: 100%;
+      max-width: 550px;
+      background-color: rgba(26, 26, 26, 0.5);
+      backdrop-filter: blur(10px);
+      padding: 1.8rem;
+      border-radius: var(--radius);
+      border: 2px solid var(--color-primary);
+      box-shadow: 0 0 15px var(--color-primary);
+      animation: formFadeIn 1s ease-in-out;
+    }
+    @keyframes formFadeIn {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    form input,
+    form textarea {
+      padding: 1rem;
+      border-radius: var(--radius);
+      border: 2px solid #333;
+      width: 100%;
+      margin-bottom: 0;
+      background-color: #2d2d2d;
+      color: var(--color-text);
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+    form input:focus,
+    form textarea:focus {
+      outline: none;
+      border-color: var(--color-primary);
+      box-shadow: 0 0 10px var(--color-primary);
+      transform: scale(1.02);
+    }
+    form label {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--color-primary);
+      margin-bottom: 0.5rem;
+    }
+    form button {
+      background-color: var(--color-primary);
+      border: none;
+      color: #000;
+      padding: 0.8rem 1.5rem;
+      border-radius: var(--radius);
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      width: 200px;
+      align-self: center;
+      animation: buttonPulse 2s infinite ease-in-out;
+    }
+    form button:hover {
+      background-color: #FF0B55;
+      color: white;
+      box-shadow: 0 0 20px rgba(255, 11, 85, 0.6);
+      transform: translateY(-3px);
+    }
+    @keyframes buttonPulse {
+      0% { box-shadow: 0 0 5px var(--color-primary); }
+      50% { box-shadow: 0 0 15px var(--color-primary); }
+      100% { box-shadow: 0 0 5px var(--color-primary); }
+    }
+    h2.section-title {
+      font-size: 2.5rem;
+      margin-bottom: 2.5rem;
+      color: var(--color-primary);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      text-align: center;
+      font-family: var(--font-heading);
+      font-weight: 600;
+      text-shadow: 0 0 5px var(--color-primary), 0 0 10px var(--color-primary);
+    }
+    h3.subsection-title {
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+      color: #FF0B55;
+      text-align: center;
+      font-family: var(--font-heading);
+      font-weight: 600;
+      text-shadow: 0 0 5px #FF0B55, 0 0 10px #FF0B55;
+    }
+    .slider-container {
+      position: relative;
+      overflow-y: auto;
+      padding: 0 1rem;
+      max-height: 450px;
+    }
+    .scroll-icon {
+      position: sticky;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: var(--color-primary);
+      font-size: 1.5rem;
+      animation: scrollBounce 2s infinite ease-in-out;
+      opacity: 0.7;
+      z-index: 10;
+    }
+    @keyframes scrollBounce {
+      0% { transform: translateX(-50%) translateY(0); opacity: 0.7; }
+      50% { transform: translateX(-50%) translateY(10px); opacity: 1; }
+      100% { transform: translateX(-50%) translateY(0); opacity: 0.7; }
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      padding-bottom: 1rem;
+    }
+    .card {
+      perspective: 1000px;
+      min-width: 300px;
+      height: 200px;
+      cursor: pointer;
+      user-select: none;
+    }
+    .card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+      transition: transform 0.6s ease;
+    }
+    .card.flipped .card-inner {
+      transform: rotateY(180deg);
+    }
+    .card-front, .card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      background-color: #1a1a1a;
+      border: 1px solid #333;
+      border-radius: var(--radius);
+      padding: 1rem;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .card-front h3 {
+      color: var(--color-primary);
+      margin-bottom: 0.5rem;
+      font-size: 1.2rem;
+    }
+    .card-front p {
+      font-size: 0.9rem;
+      line-height: 1.4;
+      color: #ccc;
+      margin: 0;
+    }
+    .card-back {
+      transform: rotateY(180deg);
+      border: 2px solid var(--color-primary);
+      box-shadow: 0 0 30px rgba(0, 255, 204, 0.5);
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .card-back h2 {
+      color: var(--color-primary);
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    .card-back p {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #ccc;
+      margin: 0;
+      text-align: center;
+    }
+    .card-back .close {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      font-size: 24px;
+      color: #fff;
+      cursor: pointer;
+    }
+    .form-message {
+      text-align: center;
+      font-size: 1rem;
+      margin-top: 1rem;
+      display: none;
+      animation: glow 2s ease-in-out infinite;
+    }
+    .form-message.success {
+      color: var(--color-primary);
+      display: block;
+    }
+    .form-message.error {
+      color: #FF0B55;
+      display: block;
+    }
+    @media (max-width: 768px) {
+      .form-message {
+        font-size: 0.9rem;
+      }
+    }
+    .contact-card {
+      min-width: 400px;
+      height: auto;
+      background-color: #1a1a1a;
+      border: 1px solid #333;
+      border-radius: var(--radius);
+      padding: 1rem;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      margin-bottom: 0.6rem;
+      animation: glow 2s ease-in-out infinite;
+    }
+    .contact-card p {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    .contact-card i {
+      color: var(--color-primary);
+      margin-right: 0.3rem;
+    }
+    .contact-card .download-cv {
+      align-self: center;
+      margin-top: 1rem;
+    }
+    .contact-social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+    .contact-social-icons a {
+      display: inline-block;
+      padding: 0.6rem;
+      border-radius: 50%;
+      color: #fff;
+      background-color: #1e293b;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      animation: socialGlow 2s ease-in-out infinite;
+    }
+    .contact-social-icons a:hover {
+      transform: scale(1.2);
+      background-color: #FF0B55;
+      box-shadow: 0 0 20px rgba(255, 11, 85, 0.6);
+      color: #000;
+    }
+    @keyframes socialGlow {
+      0% { box-shadow: 0 0 5px var(--color-primary); }
+      50% { box-shadow: 0 0 15px var(--color-primary); }
+      100% { box-shadow: 0 0 5px var(--color-primary); }
+    }
+    .profile-img {
+      width: 15vw;
+      height: 15vw;
+      max-width: 120px;
+      max-height: 120px;
+      min-width: 80px;
+      min-height: 80px;
+      border-radius: 50%;
+      border: 5px solid var(--color-primary);
+      animation: glow 2s ease-in-out infinite;
+    }
+    @media (max-width: 768px) {
+      .profile-img {
+        width: 20vw;
+        height: 20vw;
+        min-width: 60px;
+        min-height: 60px;
+      }
+      nav {
+        display: none;
+      }
+      .menu-icon {
+        display: block;
+      }
+      .grid {
+        grid-template-columns: 1fr;
+      }
+      .contact-card {
+        min-width: 100%;
+      }
+    }
+    @media (max-width: 480px) {
+      .profile-img {
+        width: 25vw;
+        height: 25vw;
+        min-width: 50px;
+        min-height: 50px;
+      }
+    }
+    @keyframes glow {
+      0% { box-shadow: 0 0 5px var(--color-primary); }
+      50% { box-shadow: 0 0 20px 5px var(--color-primary); }
+      100% { box-shadow: 0 0 5px var(--color-primary); }
+    }
+    .ravi-text {
+      display: inline-block;
+      animation: raviGlow 2s ease-in-out infinite;
+    }
+    @keyframes raviGlow {
+      0% { text-shadow: 0 0 3px #F72C5B, 0 0 5px #F72C5B; }
+      50% { text-shadow: 0 0 6px #F72C5B, 0 0 10px #F72C5B, 0 0 20px #F72C5B; }
+      100% { text-shadow: 0 0 3px #F72C5B, 0 0 5px #F72C5B; }
+    }
+    footer {
+      text-align: center;
+      padding: 3rem 1rem;
+      font-size: 0.9rem;
+    }
+    .social-icons {
+      margin-top: 2rem;
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+    }
+    .social-icons a {
+      display: inline-block;
+      padding: 0.6rem;
+      border-radius: 50%;
+      color: #fff;
+      background-color: #1e293b;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      animation: socialGlow 2s ease-in-out infinite;
+    }
+    .social-icons a:hover {
+      transform: scale(1.2);
+      background-color: #FF0B55;
+      box-shadow: 0 0 20px rgba(255, 11, 85, 0.6);
+      color: #000;
+    }
+  </style>
+</head>
+<body>
+  <header class="container">
+    <div class="logo">
+      <h2>Ravi</h2>
+    </div>
+    <i class="fas fa-bars menu-icon" onclick="toggleMenu()"></i>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#courses-certificates">Courses & Certificates</a>
+      <a href="#education">Education</a>
+      <a href="#experience">Experience</a>
+      <a href="#services">Services</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="mobile-nav" id="mobileNav">
+      <i class="fas fa-times close-icon" onclick="toggleMenu()"></i>
+      <a href="#about" onclick="toggleMenu()">About</a>
+      <a href="#projects" onclick="toggleMenu()">Projects</a>
+      <a href="#skills" onclick="toggleMenu()">Skills</a>
+      <a href="#courses-certificates" onclick="toggleMenu()">Courses & Certificates</a>
+      <a href="#education" onclick="toggleMenu()">Education</a>
+      <a href="#experience" onclick="toggleMenu()">Experience</a>
+      <a href="#services" onclick="toggleMenu()">Services</a>
+      <a href="#contact" onclick="toggleMenu()">Contact</a>
+      <div class="mobile-social-icons">
+        <a href="https://www.linkedin.com/in/ravi-vishwakarma67" target="_blank"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/ravikumar-3481" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="https://twitter.com/your-username" target="_blank"><i class="fab fa-twitter"></i></a>
+        <a href="https://instagram.com/your-username" target="_blank"><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+  </header>
+  <main>
+    <section class="hero container">
+      <div style="display: flex; align-items: center; justify-content: center; gap: 1.5rem; flex-wrap: wrap;">
+        <img src="https://assets.onecompiler.app/43gw8ktx8/43mbhed3v/Ravi.jpg" alt="Ravi" class="profile-img" />
+        <h3 style="margin: 0; font-family: 'Poppins', sans-serif; font-size: 2.5rem; color: var(--color-primary);">
+          Hi,<br>
+          I am <b class="ravi-text" style="color: #CF0F47; font-size: 3rem;">Ravi</b>
+        </h3>
+      </div>
+      <p>I am a B.Tech CSE (AI & Data Science) student from AKS University, passionate about coding and creating smart solutions.</p>
+      <div class="button-container">
+        <a href="#contact" class="btn-primary">Get in Touch</a>
+        <a href="resume.pdf" class="button" download>Download Resume</a>
+      </div>
+    </section>
+    <section id="about" class="about container">
+      <h2 class="section-title">About Me</h2>
+      <p>I'm a first-year B.Tech CSE (AI & Data Science) student. I love building web apps, exploring machine learning, and learning new tech every day.</p>
+    </section>
+    <section id="projects" class="container">
+      <h2 class="section-title">Projects</h2>
+      <div class="slider-container">
+        <div class="grid" id="projects-grid">
+          <div class="card" onclick="this.classList.toggle('flipped')">
+            <div class="card-inner">
+              <div class="card-front">
+                <h3>Personal Blog Website</h3>
+                <p>Blog with HTML, CSS,<br>JavaScript, CMS backend.</p>
+              </div>
+              <div class="card-back">
+                <span class="close" onclick="event.stopPropagation(); this.closest('.card').classList.remove('flipped')">×</span>
+                <h2>Personal Blog Website</h2>
+                <p>A blog website built with HTML, CSS, JavaScript, and a CMS backend for content management.</p>
+              </div>
+            </div>
+          </div>
+          <div class="card" onclick="this.classList.toggle('flipped')">
+            <div class="card-inner">
+              <div class="card-front">
+                <h3>Task Management App</h3>
+                <p>React app for task<br>management with UI.</p>
+              </div>
+              <div class="card-back">
+                <span class="close" onclick="event.stopPropagation(); this.closest('.card').classList.remove('flipped')">×</span>
+                <h2>Task Management App</h2>
+                <p>A React-based application for managing daily tasks with an intuitive UI and features like task prioritization.</p>
+              </div>
+            </div>
+          </div>
+          <div class="card" onclick="this.classList.toggle('flipped')">
+            <div class="card-inner">
+              <div class="card-front">
+                <h3>ML Classifier</h3>
+                <p>CNN in Python for<br>image classification.</p>
+              </div>
+              <div class="card-back">
+                <span class="close" onclick="event.stopPropagation(); this.closest('.card').classList.remove('flipped')">×</span>
+                <h2>Machine Learning Classifier</h2>
+                <p>Used Convolutional Neural Networks (CNN) in Python to classify image datasets with high accuracy.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <i class="fas fa-chevron-down scroll-icon"></i>
+      </div>
+    </section>
+    <section id="skills" class="container">
+      <h2 class="section-title">Skills</h2>
+      <div class="technical-skills">
+        <h3 class="subsection-title">Technical Skills</h3>
+        <div class="slider-container">
+          <div class="grid" id="technical-skills-grid">
+            <div class="card" onclick="this.classList.toggle('flipped')">
+              <div class="card-inner">
+                <div class="card-front">
+                  <h3>Web Development</h3>
+                  <p>HTML5, CSS3,<br>JavaScript, React</p>
+                </div>
+                <div class="card-back">
+                  <span class="close" onclick="event.stopPropagation(); this.closest('.card').classList.remove('flipped')">×</span>
+                  <h2>Web Development</h2>
+                  <p>Proficient in building responsive and dynamic web applications using HTML5, CSS3, JavaScript, and React.</p>
+                </div>
+              </div>
+            </div>
+            <div class="card" onclick="this.classList.toggle('flipped')">
+              <div class="card-inner">
+                <div class="card-front">
+                  <h3>Programming</h3>
+                  <p>Python, Java,<br>C++</p>
+                </div>
+                <div class="card-back">
+                  <span class="close" onclick="event.stopPropagation(); this.closest('.card').classList.remove('flipped')">×</span>
+                  <h2>Programming Languages</h2>
+                  <p>Skilled in Python, Java, and C++ for developing applications and solving complex problems.</p>
+                </div>
+              </div>
+            </div>
+            <div class="card" onclick="this.classList.toggle('flipped')">
+              <div class="card-inner">
+                <div class="card-front">
+                  <h3>Data Science</h3>
+                  <p>ML, Pandas,<br>NumPy</p>
+                </div>
+                <div class="card-back">
+                  <span class="close" onclick="event.stopPropagation(); this.closest('.card').classList.remove('flipped')">×</span>
+                  <h2>Data Science</h2>
+                  <p>Experienced in Machine Learning, Data Analysis, and using libraries like Pandas and NumPy.</p>
+                </div>
+              Orientation
+            </div>
+          </div>
+          <i class="fas fa-chevron-down scroll-icon"></i>
+        </div>
+      </div>
+      <div class="soft-skills" style="margin-top: 2rem;">
+        <h3 class="subsection-title">Soft Skills</h3>
+        <div class="slider-container">
+          <div class="grid" id="soft-skills-grid">
+            <div class="card" onclick="this.classList.toggle('flipped')">
+              <div class="card-inner">
+                <div class="card-front">
+                  <h3>Communication</h3>
+                  <p>Clear, Effective<br>Interaction</p>
+                </div>
+                <div class="card-back">
+                  <span class="close" onclick="event.stopPropagation(); this.closest('.card').classList.remove('flipped')">×</span>
+                  <h2>Communication</h2>
+                  <p>Skilled in conveying ideas clearly and effectively to diverse audiences, both verbally and in writing.</p>
+                </div>
+              </div>
+            </div>
+            <div class="card" onclick="this.classList.toggle('flipped')">
+              <div class="card-inner">
+                <div class="card-front">
+                  <h3>Teamwork</h3>
+                  <p>Collaboration,<br>Support</p>
+                </div>
+                <div class="card-back">
+                  <span class="close" onclick="event.stopPropagation(); this.closest('.card').classList.remove('flipped')">×</span>
+                  <h2>Teamwork</h2>
+                  <p>Experienced in working collaboratively in teams, supporting colleagues, and contributing to group goals.</p>
+                </div>
+              </div>
+            </div>
+            <div class="card" onclick="this.classList.toggle('flipped')">
+              <div class="card-inner">
+                <div class="card-front">
+                  <h3>Problem Solving</h3>
+                  <p>Analytical,<br>Creative</p>
+                </div>
+                <div class="card-back">
+                  <span class="close" onclick="event.stopPropagation(); this.closest('.card').classList.remove('flipped')">×</span>
+                  <h2>Problem Solving</h2>
+                  <p>Adept at analyzing challenges and devising creative, efficient solutions to complex problems.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <i class="fas fa-chevron-down scroll-icon"></i>
+        </div>
+      </div>
+    </section>
+    <section id="courses-certificates" class="container">
+      <h2 class="section-title">Courses & Certificates</h2>
+      <div class="slider-container">
+        <div class="grid" id="courses-certificates-grid">
+          <div class="card" onclick="this.classList.toggle('flipped')">
+            <div class="card-inner">
+              <div class="card-front">
+                <h3>Full Stack Web Dev</h3>
+                <p>Coursera<br>2024</p>
+              </div>
+              <div class="card-back">
+                <span class="close" onclick="event.stopPropagation(); this.closest('.card').classList.remove('flipped')">×</span>
+                <h2>Full Stack Web Development</h2>
+                <p>Completed a Coursera course on Full Stack Web Development, covering HTML, CSS3, JavaScript, React, and Node.js. Issued in 2024.</p>
+              </div>
+            </div>
+          </div>
+          <div class="card" onclick="this.classList.toggle('flipped')">
+            <div class="card-inner">
+              <div class="card-front">
+                <h3>Machine Learning</h3>
+                <p>Udemy<br>2024</p>
+              </div>
+              <div class="card-back">
+                <span class="close" onclick="event.stopPropagation(); this.closest('.card').classList.remove('flipped')">×</span>
+                <h2>Machine Learning with Python</h2>
+                <p>Earned a certificate from Udemy for a course on Machine Learning, focusing on Python, Pandas, and Scikit-learn. Issued in 2024.</p>
+              </div>
+            </div>
+          </div>
+          <div class="card" onclick="this.classList.toggle('flipped')">
+            <div class="card-inner">
+              <div class="card-front">
+                <h3>AWS Certified</h3>
+                <p>Amazon<br>2024</p>
+              </div>
+              <div class="card-back">
+                <span class="close" onclick="event.stopPropagation(); this.closest('.card').classList.remove('flipped')">×</span>
+                <h2>AWS Certified Cloud Practitioner</h2>
+                <p>Obtained AWS Certified Cloud Practitioner certification, demonstrating knowledge of AWS cloud services. Issued in 2024.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <i class="fas fa-chevron-down scroll-icon"></i>
+      </div>
+    </section>
+    <section id="education" class="container">
+      <h2 class="section-title">Education</h2>
+      <div class="slider-container">
+        <div class="grid" id="education-grid">
+          <div class="card" onclick="this.classList.toggle('flipped')">
+            <div class="card-inner">
+              <div class="card-front">
+                <h3>AKS University</h3>
+                <p>B.Tech CSE (AI & DS)<br>2025 – Present</p>
+              </div>
+              <div class="card-back">
+                <span class="close" onclick="event.stopPropagation(); this.closest('.card').classList.remove('flipped')">×</span>
+                <h2>AKS University, Satna</h2>
+                <p>B.Tech in Computer Science and Engineering (AI & Data Science), May 2024 – Present. Currently pursuing first year, learning core subjects like Python, Data Science, and Web Development.</p>
+              </div>
+            </div>
+          </div>
+          <div class="card" onclick="this.classList.toggle('flipped')">
+            <div class="card-inner">
+              <div class="card-front">
+                <h3>12th Grade</h3>
+                <p>PCM + CS<br>2022 – 2023</p>
+              </div>
+              <div class="card-back">
+                <span class="close" onclick="event.stopPropagation(); this.closest('.card').classList.remove('flipped')">×</span>
+                <h2>12th (PCM + Computer Science)</h2>
+                <p>Completed from PM Shree Government Higher Secondary School Karhi, May 2022 – April 2023. Focused on Mathematics, Physics, Chemistry, and Computer Science basics.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <i class="fas fa-chevron-down scroll-icon"></i>
+      </div>
+    </section>
+    <section id="experience" class="container">
+      <h2 class="section-title">Experience</h2>
+      <div class="slider-container">
+        <div class="grid" id="experience-grid">
+          <div class="card" onclick="this.classList.toggle('flipped')">
+            <div class="card-inner">
+              <div class="card-front">
+                <h3>Freelance Developer</h3>
+                <p>Web dev<br>2024 – Present</p>
+              </div>
+              <div class="card-back">
+                <span class="close" onclick="event.stopPropagation(); this.closest('.card').classList.remove('flipped')">×</span>
+                <h2>Freelance Web Developer</h2>
+                <p>2024 – Present. Developed personal blog websites, portfolio pages, and small business sites using HTML, CSS, JavaScript, and React.</p>
+              </div>
+            </div>
+          </div>
+          <div class="card" onclick="this.classList.toggle('flipped')">
+            <div class="card-inner">
+              <div class="card-front">
+                <h3>ML Projects</h3>
+                <p>Python, CNN<br>2024 – Present</p>
+              </div>
+              <div class="card-back">
+                <span class="close" onclick="event.stopPropagation(); this.closest('.card').classList.remove('flipped')">×</span>
+                <h2>Machine Learning Projects</h2>
+                <p>2024 – Present. Worked on small ML models and image classification projects using Python, Pandas, NumPy, and CNN.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <i class="fas fa-chevron-down scroll-icon"></i>
+      </div>
+    </section>
+    <section id="services" class="container">
+      <h2 class="section-title">My Services</h2>
+      <div class="slider-container">
+        <div class="grid" id="services-grid">
+          <div class="card" onclick="this.classList.toggle('flipped')">
+            <div class="card-inner">
+              <div class="card-front">
+                <h3>Full Stack Dev</h3>
+                <p>Frontend &<br>Backend</p>
+              </div>
+              <div class="card-back">
+                <span class="close" onclick="event.stopPropagation(); this.closest('.card').classList.remove('flipped')">×</span>
+                <h2>Full Stack Web Developer</h2>
+                <p>I create complete websites using HTML, CSS, JavaScript, React, Node.js, Express, and databases like MongoDB. I handle both frontend and backend for fully functional web applications.</p>
+              </div>
+            </div>
+          </div>
+          <div class="card" onclick="this.classList.toggle('flipped')">
+            <div class="card-inner">
+              <div class="card-front">
+                <h3>Cloud Computing</h3>
+                <p>AWS, Scalable<br>Apps</p>
+              </div>
+              <div class="card-back">
+                <span class="close" onclick="event.stopPropagation(); this.closest('.card').classList.remove('flipped')">×</span>
+                <h2>Cloud Computing</h2>
+                <p>I deploy and manage applications using AWS services such as EC2, S3, Lambda, and IAM. I ensure scalability, security, and performance.</p>
+              </div>
+            </div>
+          </div>
+          <div class="card" onclick="this.classList.toggle('flipped')">
+            <div class="card-inner">
+              <div class="card-front">
+                <h3>UI/UX Design</h3>
+                <p>Figma, Adobe<br>XD</p>
+              </div>
+              <div class="card-back">
+                <span class="close" onclick="event.stopPropagation(); this.closest('.card').classList.remove('flipped')">×</span>
+                <h2>Design</h2>
+                <p>I design modern and user-friendly interfaces using tools like Figma, Adobe XD. Focus on responsiveness and smooth user experiences.</p>
+              </div>
+            </div>
+          </div>
+          <div class="card" onclick="this.classList.toggle('flipped')">
+            <div class="card-inner">
+              <div class="card-front">
+                <div class="card-front">
+                  <h3>Freelance Optimize</h3>
+                  <p>Profile Growth<br>Strategy</p>
+                </div>
+                <div class="card-back">
+                  <span class="close" onclick="event.stopPropagation(); this.closest('.card').classList.remove('flipped')">×</span>
+                  <h2>Freelance Optimization</h2>
+                  <p>I optimize freelancer profiles (like Fiverr, Upwork) to boost visibility and conversions. Also help with pricing, SEO, and gig strategy.</p>
+                </div>
+              </div>
+            </div>
+          </div class="card" onclick="this.classList.toggle('flipped')">
+            <div class="card-inner">
+              <div class="card-front">
+                <h3>System Arch</h3>
+                <p>Scalable<br>Designs</p>
+              </div>
+              .div class="card-back">
+                <div class="card-back">
+                  <span class="close" onclick="event.stopPropagation(); this.closest('.card').classList.remove('flipped')">×</span>
+                  <h2>System Architecture</h2>
+                    p>I plan and design scalable, modular, and maintainable architecture for enterprise-grade apps using microservices, API gateways, and database design.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <i class="fas fa-chevron-down scroll-icon"></i>
+      </div>
+    </section>
+    <section id="contact" class="container">
+      <h2 class="section-title">Contact Me</h2>
+      <div class="contact-card">
+        <p>
+          <i class="fas fa-envelope"></i>
+          <strong>Email:</strong><br><a href="mailto:ravivish968@gmail.com">ravivish968@gmail.com</a>
+        </p>
+        <p>
+          <i class="fas fa-phone"></i>
+          <strong>Phone:</strong><br><a href="tel:+916260013481">+91 6260013481</a>
+        </p>
+        <a href="resume.pdf" class="btn-primary download-cv" download>Download CV</a>
+      </div>
+      <form id="contact-form" action="https://formspree.io/f/manjerbj" method="POST">
+        <label for="name">Name</label>
+        <input type="text" id="name" placeholder="Your full name" name="name" required />
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="your.email@example.com" name="email" required />
+        <label for="message">Message</label>
+        <textarea id="message" placeholder="Write your message here..." name="message" required></textarea>
+        <button type="submit">Send Message</button>
+        <div id="form-message" class="form-message"></div>
+      </form>
+    </section>
+  </main>
+  <div class="social-icons">
+    <a href="https://www.linkedin.com/in/ravi-vishwakarma67" target="_blank"><i class="fab fa-linkedin"></i></a>
+    <a href="https://github.com/ravikumar-3481" target="_blank"><i class="fab fa-github"></i></a>
+    <a href="https://twitter.com/your-username" target="_blank"><i class="fab fa-twitter"></i></a>
+    <a href="https://instagram.com/your-username" target="_blank"><i class="fab fa-instagram"></i></a>
+  </div>
+  <footer>
+    © 2024 Ravi’s Portfolio. All rights reserved.
+  </footer>
+  <script>
+    function toggleMenu() {
+      const menuIcon = document.querySelector('.menu-icon');
+      const mobileNav = document.getElementById('mobileNav');
+      menuIcon.classList.toggle('active');
+      mobileNav.classList.toggle('active');
+    }
+    document.querySelectorAll('.slider-container').forEach(container => {
+      const scrollIcon = container.querySelector('.scroll-icon');
+      container.addEventListener('scroll', () => {
+        const scrollPosition = container.scrollTop + container.clientHeight;
+        const maxScroll = container.scrollHeight;
+        if (scrollPosition >= maxScroll - 10) {
+          scrollIcon.style.display = 'none';
+        } else {
+          scrollIcon.style.display = 'block';
+        }
+      });
+    });
+    // Script for handling form submission with Formspree
+    const form = document.getElementById('contact-form');
+    const formMessage = document.getElementById('form-message');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault(); // Prevent default form submission
+
+      try {
+        const response = await fetch(form.action, {
+          method: form.method,
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (response.ok) {
+          formMessage.textContent = 'Message sent successfully!';
+          formMessage.classList.remove('error');
+          formMessage.classList.add('success');
+          form.reset(); // Clear the form
+        } else {
+          throw new Error('Failed to send message.');
+        }
+      catch (error) {
+        formMessage.textContent = 'Error sending message. Please try again.';
+        formMessage.classList.remove('success');
+        formMessage.classList.add('error');
+      }
+    });
+  </script>
+</body>
+</html>
